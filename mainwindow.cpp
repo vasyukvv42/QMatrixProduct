@@ -9,7 +9,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 
 void MainWindow::setupUi()
 {
-    setWindowTitle(QString("Matrix Multiplication"));
+    setWindowTitle(QString("QMatrixProduct"));
     resize(1280, 720);
     centralWidget = new QWidget(this);
 
