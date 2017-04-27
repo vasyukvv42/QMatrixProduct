@@ -9,7 +9,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 
 void MainWindow::setupUi()
 {
-    setWindowTitle(QString("QMatrixProduct"));
+    setWindowTitle("QMatrixProduct");
     resize(1280, 720);
     centralWidget = new QWidget(this);
 
@@ -28,7 +28,7 @@ void MainWindow::setupUi()
     QHBoxLayout *optionsLayout = new QHBoxLayout();
 
     QLabel *sizeLabel = new QLabel(centralWidget);
-    sizeLabel->setText(QString("Size:"));
+    sizeLabel->setText("Size:");
     optionsLayout->addWidget(sizeLabel);
 
     sizeBox = new QSpinBox(centralWidget);
@@ -42,13 +42,13 @@ void MainWindow::setupUi()
     optionsLayout->addItem(optionsSpacer);
 
     algorithmBox = new QComboBox(centralWidget);
-    algorithmBox->addItem(QString("Strassen Algorithm"), 0);
-    algorithmBox->addItem(QString("Winograd-Strassen Algorithm"), 1);
-    algorithmBox->addItem(QString("Standard Algorithm"), 2);
+    algorithmBox->addItem("Strassen Algorithm", 0);
+    algorithmBox->addItem("Winograd-Strassen Algorithm", 1);
+    algorithmBox->addItem("Standard Algorithm", 2);
     optionsLayout->addWidget(algorithmBox);
 
     multiplyButton = new QPushButton(centralWidget);
-    multiplyButton->setText(QString("Multiply..."));
+    multiplyButton->setText("Multiply...");
     optionsLayout->addWidget(multiplyButton);
 
     verticalLayout->addWidget(splitter);

@@ -27,11 +27,11 @@ void MatrixWidget::setupUi()
     buttonsLayout->addItem(leftSpacer);
 
     randomizeButton = new QPushButton(this);
-    randomizeButton->setText(QString("Randomize"));
+    randomizeButton->setText("Randomize");
     buttonsLayout->addWidget(randomizeButton);
 
     importButton = new QPushButton(this);
-    importButton->setText(QString("Import..."));
+    importButton->setText("Import...");
     buttonsLayout->addWidget(importButton);
 
     QSpacerItem *rightSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding);
