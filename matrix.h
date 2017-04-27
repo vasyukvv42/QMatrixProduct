@@ -2,6 +2,7 @@
 #define MATRIX_H
 
 #include <vector>
+#include <random>
 
 class Matrix
 {
@@ -13,6 +14,7 @@ public:
     Matrix operator +(const Matrix& that);
     Matrix operator -(const Matrix& that);
     int getSize() const;
+    void randomize();
 private:
     std::vector<std::vector<double>> data;
     int size;

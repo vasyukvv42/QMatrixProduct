@@ -1,19 +1,19 @@
 #include "matrixmodel.h"
 
 MatrixModel::MatrixModel(const Matrix &data, QObject *parent)
-    : QAbstractTableModel(parent), m_data(data)
+    : QAbstractTableModel(parent), modelData(data)
 {
 
 }
 
 int MatrixModel::rowCount(const QModelIndex &) const
 {
-   return m_data.getSize();
+   return modelData.getSize();
 }
 
 int MatrixModel::columnCount(const QModelIndex &) const
 {
-    return m_data.getSize();
+    return modelData.getSize();
 }
 
 QVariant MatrixModel::data(const QModelIndex &index, int role) const
@@ -21,7 +21,7 @@ QVariant MatrixModel::data(const QModelIndex &index, int role) const
     int row = index.row();
     int col = index.column();
     if (role == Qt::DisplayRole || role == Qt::EditRole)
-       return QString::number(m_data[row][col]);
+       return QString::number(modelData[row][col]);
     return QVariant();
 }
 
@@ -30,7 +30,7 @@ bool MatrixModel::setData(const QModelIndex &index, const QVariant &value, int r
     int row = index.row();
     int col = index.column();
     if (role == Qt::EditRole)
-        m_data[row][col] = value.toDouble();
+        modelData[row][col] = value.toDouble();
     return true;
 }
 
@@ -43,13 +43,20 @@ Qt::ItemFlags MatrixModel::flags(const QModelIndex &index) const
 
 Matrix& MatrixModel::matrix()
 {
-    return m_data;
+    return modelData;
 }
 
 void MatrixModel::changeSize(int new_size)
 {
     beginResetModel();
-    m_data.changeSize(new_size);
+    modelData.changeSize(new_size);
+    endResetModel();
+}
+
+void MatrixModel::randomize()
+{
+    beginResetModel();
+    modelData.randomize();
     endResetModel();
 }
 

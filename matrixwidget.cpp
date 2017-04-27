@@ -3,6 +3,7 @@
 MatrixWidget::MatrixWidget(QWidget *parent) : QWidget(parent)
 {
     setupUi();
+    connect(randomizeButton, SIGNAL(clicked(bool)), this, SLOT(randomize()));
 }
 
 void MatrixWidget::setupUi()
@@ -46,4 +47,9 @@ MatrixModel* MatrixWidget::model()
 void MatrixWidget::changeSize(int new_size)
 {
     matrixModel->changeSize(new_size);
+}
+
+void MatrixWidget::randomize()
+{
+    matrixModel->randomize();
 }

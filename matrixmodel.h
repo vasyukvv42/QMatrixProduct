@@ -16,8 +16,9 @@ public:
     Qt::ItemFlags flags(const QModelIndex &index) const;
     Matrix &matrix();
     void changeSize(int new_size);
+    void randomize();
 private:
-    Matrix m_data;
+    Matrix modelData;
 };
 
 #endif // MATRIXMODEL_H

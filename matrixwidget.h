@@ -25,6 +25,7 @@ private:
     QPushButton *importButton;
 public slots:
     void changeSize(int new_size);
+    void randomize();
 };
 
 #endif // MATRIXWIDGET_H

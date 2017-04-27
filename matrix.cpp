@@ -1,5 +1,4 @@
 #include "matrix.h"
-#include <QDebug>
 
 Matrix::Matrix(int size) : size(size)
 {
@@ -51,4 +50,14 @@ Matrix Matrix::operator -(const Matrix &obj)
 int Matrix::getSize() const
 {
     return size;
+}
+
+void Matrix::randomize()
+{
+    std::random_device rd;
+    std::mt19937 mt(rd());
+    std::uniform_int_distribution<int> dist(-100, 100);
+    for (int i = 0; i < size; i++)
+        for (int j = 0; j < size; j++)
+            data[i][j] = dist(mt);
 }
