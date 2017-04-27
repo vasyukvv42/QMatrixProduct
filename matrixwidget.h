@@ -18,6 +18,10 @@ class MatrixWidget : public QWidget
 public:
     explicit MatrixWidget(QWidget *parent = 0);
     MatrixModel* model();
+public slots:
+    void changeSize(int new_size);
+    void randomize();
+    void import();
 private:
     void setupUi();
 
@@ -25,10 +29,6 @@ private:
     QTableView *m_tableView;
     QPushButton *m_randomizeButton;
     QPushButton *m_importButton;
-public slots:
-    void changeSize(int new_size);
-    void randomize();
-    void import();
 };
 
 #endif // MATRIXWIDGET_H
