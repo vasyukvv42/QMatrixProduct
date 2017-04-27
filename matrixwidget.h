@@ -8,6 +8,8 @@
 #include <QPushButton>
 #include <QSpacerItem>
 #include <QHeaderView>
+#include <QFileDialog>
+#include <QDir>
 #include "matrixmodel.h"
 
 class MatrixWidget : public QWidget
@@ -26,6 +28,7 @@ private:
 public slots:
     void changeSize(int new_size);
     void randomize();
+    void import();
 };
 
 #endif // MATRIXWIDGET_H

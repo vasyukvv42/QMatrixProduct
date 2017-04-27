@@ -4,6 +4,7 @@ MatrixWidget::MatrixWidget(QWidget *parent) : QWidget(parent)
 {
     setupUi();
     connect(randomizeButton, SIGNAL(clicked(bool)), this, SLOT(randomize()));
+    connect(importButton, SIGNAL(clicked(bool)), this, SLOT(import()));
 }
 
 void MatrixWidget::setupUi()
@@ -52,4 +53,11 @@ void MatrixWidget::changeSize(int new_size)
 void MatrixWidget::randomize()
 {
     matrixModel->randomize();
+}
+
+void MatrixWidget::import()
+{
+    QString filename = QFileDialog::getOpenFileName(this, "Import matrix",
+        QDir::homePath(), "Text files (*.txt)");
+    matrixModel->importFromFile(filename);
 }

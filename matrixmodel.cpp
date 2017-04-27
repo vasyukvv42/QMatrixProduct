@@ -60,4 +60,17 @@ void MatrixModel::randomize()
     endResetModel();
 }
 
-
+void MatrixModel::importFromFile(const QString &filename)
+{
+    beginResetModel();
+    QFile input(filename);
+    input.open(QIODevice::ReadOnly | QIODevice::Text);
+    for (int i = 0; i < modelData.getSize() && !input.atEnd(); i++)
+    {
+        QString line = input.readLine();
+        QTextStream ls(&line);
+        for (int j = 0; j < modelData.getSize() && !ls.atEnd(); j++)
+            ls >> modelData[i][j];
+    }
+    endResetModel();
+}

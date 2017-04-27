@@ -3,6 +3,8 @@
 
 #include <QObject>
 #include <QAbstractTableModel>
+#include <QFile>
+#include <QTextStream>
 #include "matrix.h"
 
 class MatrixModel : public QAbstractTableModel
@@ -17,6 +19,7 @@ public:
     Matrix &matrix();
     void changeSize(int new_size);
     void randomize();
+    void importFromFile(const QString &filename);
 private:
     Matrix modelData;
 };
