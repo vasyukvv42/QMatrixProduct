@@ -24,14 +24,14 @@ public:
 private:
     void setupUi();
 
-    QWidget *centralWidget;
-    MatrixWidget *matrixAWidget;
-    MatrixWidget *matrixBWidget;
-    MatrixModel *matrixAModel;
-    MatrixModel *matrixBModel;
-    QSpinBox *sizeBox;
-    QComboBox *algorithmBox;
-    QPushButton *multiplyButton;
+    QWidget *m_centralWidget;
+    MatrixWidget *m_matrixAWidget;
+    MatrixWidget *m_matrixBWidget;
+    MatrixModel *m_matrixAModel;
+    MatrixModel *m_matrixBModel;
+    QSpinBox *m_sizeBox;
+    QComboBox *m_algorithmBox;
+    QPushButton *m_multiplyButton;
 };
 
 #endif // MAINWINDOW_H

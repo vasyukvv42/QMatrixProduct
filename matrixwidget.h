@@ -21,10 +21,10 @@ public:
 private:
     void setupUi();
 
-    MatrixModel *matrixModel;
-    QTableView *tableView;
-    QPushButton *randomizeButton;
-    QPushButton *importButton;
+    MatrixModel *m_matrixModel;
+    QTableView *m_tableView;
+    QPushButton *m_randomizeButton;
+    QPushButton *m_importButton;
 public slots:
     void changeSize(int new_size);
     void randomize();

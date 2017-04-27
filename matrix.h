@@ -7,17 +7,17 @@
 class Matrix
 {
 public:
-    explicit Matrix(int size = 64);
+    explicit Matrix(int m_size = 64);
     void changeSize(int new_size);
     std::vector<double>& operator [](int row);
     const std::vector<double>& operator [](int row) const;
     Matrix operator +(const Matrix& that);
     Matrix operator -(const Matrix& that);
-    int getSize() const;
+    int size() const;
     void randomize();
 private:
-    std::vector<std::vector<double>> data;
-    int size;
+    std::vector<std::vector<double>> m_data;
+    int m_size;
 };
 
 #endif // MATRIX_H

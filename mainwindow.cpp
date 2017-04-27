@@ -3,55 +3,55 @@
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 {
     setupUi();
-    connect(sizeBox, SIGNAL(valueChanged(int)), matrixAWidget, SLOT(changeSize(int)));
-    connect(sizeBox, SIGNAL(valueChanged(int)), matrixBWidget, SLOT(changeSize(int)));
+    connect(m_sizeBox, SIGNAL(valueChanged(int)), m_matrixAWidget, SLOT(changeSize(int)));
+    connect(m_sizeBox, SIGNAL(valueChanged(int)), m_matrixBWidget, SLOT(changeSize(int)));
 }
 
 void MainWindow::setupUi()
 {
     setWindowTitle("QMatrixProduct");
     resize(1280, 720);
-    centralWidget = new QWidget(this);
+    m_centralWidget = new QWidget(this);
 
-    QVBoxLayout *verticalLayout = new QVBoxLayout(centralWidget);
+    QVBoxLayout *verticalLayout = new QVBoxLayout(m_centralWidget);
 
-    QSplitter *splitter = new QSplitter(centralWidget);
+    QSplitter *splitter = new QSplitter(m_centralWidget);
     splitter->setOrientation(Qt::Horizontal);
 
-    matrixAWidget = new MatrixWidget(splitter);
-    matrixBWidget = new MatrixWidget(splitter);
-    matrixAModel = matrixAWidget->model();
-    matrixBModel = matrixBWidget->model();
-    splitter->addWidget(matrixAWidget);
-    splitter->addWidget(matrixBWidget);
+    m_matrixAWidget = new MatrixWidget(splitter);
+    m_matrixBWidget = new MatrixWidget(splitter);
+    m_matrixAModel = m_matrixAWidget->model();
+    m_matrixBModel = m_matrixBWidget->model();
+    splitter->addWidget(m_matrixAWidget);
+    splitter->addWidget(m_matrixBWidget);
 
     QHBoxLayout *optionsLayout = new QHBoxLayout();
 
-    QLabel *sizeLabel = new QLabel(centralWidget);
+    QLabel *sizeLabel = new QLabel(m_centralWidget);
     sizeLabel->setText("Size:");
     optionsLayout->addWidget(sizeLabel);
 
-    sizeBox = new QSpinBox(centralWidget);
-    sizeBox->setValue(64);
-    sizeBox->setSingleStep(1);
-    sizeBox->setMinimum(0);
-    sizeBox->setMaximum(8192);
-    optionsLayout->addWidget(sizeBox);
+    m_sizeBox = new QSpinBox(m_centralWidget);
+    m_sizeBox->setValue(64);
+    m_sizeBox->setSingleStep(1);
+    m_sizeBox->setMinimum(0);
+    m_sizeBox->setMaximum(8192);
+    optionsLayout->addWidget(m_sizeBox);
 
     QSpacerItem *optionsSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding);
     optionsLayout->addItem(optionsSpacer);
 
-    algorithmBox = new QComboBox(centralWidget);
-    algorithmBox->addItem("Strassen Algorithm", 0);
-    algorithmBox->addItem("Winograd-Strassen Algorithm", 1);
-    algorithmBox->addItem("Standard Algorithm", 2);
-    optionsLayout->addWidget(algorithmBox);
+    m_algorithmBox = new QComboBox(m_centralWidget);
+    m_algorithmBox->addItem("Strassen Algorithm", 0);
+    m_algorithmBox->addItem("Winograd-Strassen Algorithm", 1);
+    m_algorithmBox->addItem("Standard Algorithm", 2);
+    optionsLayout->addWidget(m_algorithmBox);
 
-    multiplyButton = new QPushButton(centralWidget);
-    multiplyButton->setText("Multiply...");
-    optionsLayout->addWidget(multiplyButton);
+    m_multiplyButton = new QPushButton(m_centralWidget);
+    m_multiplyButton->setText("Multiply...");
+    optionsLayout->addWidget(m_multiplyButton);
 
     verticalLayout->addWidget(splitter);
     verticalLayout->addLayout(optionsLayout);
-    setCentralWidget(centralWidget);
+    setCentralWidget(m_centralWidget);
 }

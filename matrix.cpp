@@ -1,55 +1,54 @@
 #include "matrix.h"
 
-Matrix::Matrix(int size) : size(size)
+Matrix::Matrix(int size) : m_size(size)
 {
     for (int i = 0; i < size; i++)
-        data.push_back(std::vector<double>(size, 0));
+        m_data.push_back(std::vector<double>(size, 0));
 }
 
 std::vector<double>& Matrix::operator [](int row)
 {
-    return data[row];
+    return m_data[row];
 }
 
 const std::vector<double>& Matrix::operator [](int row) const
 {
-    return data[row];
+    return m_data[row];
 }
 
 
 void Matrix::changeSize(int new_size)
 {
-    for (int i = 0; i < size; i++)
-    {
-        data[i].resize(new_size, 0);
-        data[i].shrink_to_fit();
+    for (int i = 0; i < m_size; i++) {
+        m_data[i].resize(new_size, 0);
+        m_data[i].shrink_to_fit();
     }
-    data.resize(new_size, std::vector<double>(new_size, 0));
-    data.shrink_to_fit();
-    size = new_size;
+    m_data.resize(new_size, std::vector<double>(new_size, 0));
+    m_data.shrink_to_fit();
+    m_size = new_size;
 }
 
 Matrix Matrix::operator +(const Matrix &obj)
 {
-    Matrix result(size);
-    for (int i = 0; i < size; i++)
-        for (int j = 0; j < size; j++)
-            result[i][j] = data[i][j] + obj.data[i][j];
+    Matrix result(m_size);
+    for (int i = 0; i < m_size; i++)
+        for (int j = 0; j < m_size; j++)
+            result[i][j] = m_data[i][j] + obj.m_data[i][j];
     return result;
 }
 
 Matrix Matrix::operator -(const Matrix &obj)
 {
-    Matrix result(size);
-    for (int i = 0; i < size; i++)
-        for (int j = 0; j < size; j++)
-            result[i][j] = data[i][j] - obj.data[i][j];
+    Matrix result(m_size);
+    for (int i = 0; i < m_size; i++)
+        for (int j = 0; j < m_size; j++)
+            result[i][j] = m_data[i][j] - obj.m_data[i][j];
     return result;
 }
 
-int Matrix::getSize() const
+int Matrix::size() const
 {
-    return size;
+    return m_size;
 }
 
 void Matrix::randomize()
@@ -57,7 +56,7 @@ void Matrix::randomize()
     std::random_device rd;
     std::mt19937 mt(rd());
     std::uniform_int_distribution<int> dist(-100, 100);
-    for (int i = 0; i < size; i++)
-        for (int j = 0; j < size; j++)
-            data[i][j] = dist(mt);
+    for (int i = 0; i < m_size; i++)
+        for (int j = 0; j < m_size; j++)
+            m_data[i][j] = dist(mt);
 }

@@ -21,7 +21,7 @@ public:
     void randomize();
     void importFromFile(const QString &filename);
 private:
-    Matrix modelData;
+    Matrix m_data;
 };
 
 #endif // MATRIXMODEL_H

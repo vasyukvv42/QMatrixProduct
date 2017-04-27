@@ -3,36 +3,36 @@
 MatrixWidget::MatrixWidget(QWidget *parent) : QWidget(parent)
 {
     setupUi();
-    connect(randomizeButton, SIGNAL(clicked(bool)), this, SLOT(randomize()));
-    connect(importButton, SIGNAL(clicked(bool)), this, SLOT(import()));
+    connect(m_randomizeButton, SIGNAL(clicked(bool)), this, SLOT(randomize()));
+    connect(m_importButton, SIGNAL(clicked(bool)), this, SLOT(import()));
 }
 
 void MatrixWidget::setupUi()
 {
     QVBoxLayout *verticalLayout = new QVBoxLayout(this);
 
-    matrixModel = new MatrixModel();
+    m_matrixModel = new MatrixModel();
 
-    tableView = new QTableView(this);
-    tableView->setModel(matrixModel);
-    tableView->verticalHeader()->hide();
-    tableView->horizontalHeader()->hide();
-    tableView->verticalHeader()->setDefaultSectionSize(40);
-    tableView->horizontalHeader()->setDefaultSectionSize(40);
-    verticalLayout->addWidget(tableView);
+    m_tableView = new QTableView(this);
+    m_tableView->setModel(m_matrixModel);
+    m_tableView->verticalHeader()->hide();
+    m_tableView->horizontalHeader()->hide();
+    m_tableView->verticalHeader()->setDefaultSectionSize(40);
+    m_tableView->horizontalHeader()->setDefaultSectionSize(40);
+    verticalLayout->addWidget(m_tableView);
 
     QHBoxLayout *buttonsLayout = new QHBoxLayout();
 
     QSpacerItem *leftSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding);
     buttonsLayout->addItem(leftSpacer);
 
-    randomizeButton = new QPushButton(this);
-    randomizeButton->setText("Randomize");
-    buttonsLayout->addWidget(randomizeButton);
+    m_randomizeButton = new QPushButton(this);
+    m_randomizeButton->setText("Randomize");
+    buttonsLayout->addWidget(m_randomizeButton);
 
-    importButton = new QPushButton(this);
-    importButton->setText("Import...");
-    buttonsLayout->addWidget(importButton);
+    m_importButton = new QPushButton(this);
+    m_importButton->setText("Import...");
+    buttonsLayout->addWidget(m_importButton);
 
     QSpacerItem *rightSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding);
     buttonsLayout->addItem(rightSpacer);
@@ -42,22 +42,22 @@ void MatrixWidget::setupUi()
 
 MatrixModel* MatrixWidget::model()
 {
-    return matrixModel;
+    return m_matrixModel;
 }
 
 void MatrixWidget::changeSize(int new_size)
 {
-    matrixModel->changeSize(new_size);
+    m_matrixModel->changeSize(new_size);
 }
 
 void MatrixWidget::randomize()
 {
-    matrixModel->randomize();
+    m_matrixModel->randomize();
 }
 
 void MatrixWidget::import()
 {
     QString filename = QFileDialog::getOpenFileName(this, "Import matrix",
-        QDir::homePath(), "Text files (*.txt)");
-    matrixModel->importFromFile(filename);
+                                                    QDir::homePath(), "Text files (*.txt)");
+    m_matrixModel->importFromFile(filename);
 }
