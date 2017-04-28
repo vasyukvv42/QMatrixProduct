@@ -1,7 +1,7 @@
 #include "matrixmodel.h"
 
-MatrixModel::MatrixModel(const Matrix &data, QObject *parent)
-    : QAbstractTableModel(parent), m_data(data)
+MatrixModel::MatrixModel(const Matrix &data, bool readOnly, QObject *parent)
+    : QAbstractTableModel(parent), m_data(data), m_readOnly(readOnly)
 {
 
 }
@@ -36,8 +36,8 @@ bool MatrixModel::setData(const QModelIndex &index, const QVariant &value, int r
 
 Qt::ItemFlags MatrixModel::flags(const QModelIndex &index) const
 {
-    if (!index.isValid())
-        return Qt::ItemIsEnabled;
+    if (!index.isValid() || m_readOnly)
+        return QAbstractItemModel::flags(index);
     return QAbstractItemModel::flags(index) | Qt::ItemIsEditable;
 }
 

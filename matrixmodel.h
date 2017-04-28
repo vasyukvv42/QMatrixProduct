@@ -10,7 +10,7 @@
 class MatrixModel : public QAbstractTableModel
 {
 public:
-    explicit MatrixModel(const Matrix &data = Matrix(), QObject *parent = 0);
+    explicit MatrixModel(const Matrix &data = Matrix(), bool readOnly = false, QObject *parent = 0);
     int rowCount(const QModelIndex &parent = QModelIndex()) const override;
     int columnCount(const QModelIndex &parent = QModelIndex()) const override;
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
@@ -22,6 +22,7 @@ public:
     void importFromFile(const QString &filename);
 private:
     Matrix m_data;
+    bool m_readOnly;
 };
 
 #endif // MATRIXMODEL_H
