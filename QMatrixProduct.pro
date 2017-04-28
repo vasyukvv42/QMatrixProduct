@@ -27,9 +27,11 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     matrix.cpp \
     matrixmodel.cpp \
-    matrixwidget.cpp
+    matrixwidget.cpp \
+    matrixproduct.cpp
 
 HEADERS  += mainwindow.h \
     matrix.h \
     matrixmodel.h \
-    matrixwidget.h
+    matrixwidget.h \
+    matrixproduct.h

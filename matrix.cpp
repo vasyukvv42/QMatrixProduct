@@ -6,6 +6,12 @@ Matrix::Matrix(int size) : m_size(size)
         m_data.push_back(std::vector<double>(size, 0));
 }
 
+Matrix::Matrix(const Matrix &other)
+{
+    m_size = other.m_size;
+    m_data = other.m_data;
+}
+
 std::vector<double>& Matrix::operator [](int row)
 {
     return m_data[row];
@@ -28,22 +34,30 @@ void Matrix::changeSize(int new_size)
     m_size = new_size;
 }
 
-Matrix Matrix::operator +(const Matrix &obj)
+Matrix Matrix::operator +(const Matrix &other) const
 {
     Matrix result(m_size);
     for (int i = 0; i < m_size; i++)
         for (int j = 0; j < m_size; j++)
-            result[i][j] = m_data[i][j] + obj.m_data[i][j];
+            result[i][j] = m_data[i][j] + other.m_data[i][j];
     return result;
 }
 
-Matrix Matrix::operator -(const Matrix &obj)
+Matrix Matrix::operator -(const Matrix &other) const
 {
     Matrix result(m_size);
     for (int i = 0; i < m_size; i++)
         for (int j = 0; j < m_size; j++)
-            result[i][j] = m_data[i][j] - obj.m_data[i][j];
+            result[i][j] = m_data[i][j] - other.m_data[i][j];
     return result;
+}
+
+Matrix &Matrix::operator =(const Matrix &other)
+{
+    m_size = other.m_size;
+    m_data.clear();
+    m_data = other.m_data;
+    return *this;
 }
 
 int Matrix::size() const
