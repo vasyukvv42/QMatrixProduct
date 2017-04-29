@@ -32,7 +32,7 @@ public:
 public slots:
     /**
      * @brief Slot connected with "Multiply" button.
-     * Opens a ResultWindow window
+     * Opens a ResultsWindow window
      */
     void multiply();
 private:
