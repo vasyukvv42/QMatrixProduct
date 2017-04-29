@@ -20,13 +20,17 @@
 #include "matrixproduct.h"
 #include "resultswindow.h"
 
+/**
+ * @brief Main window of the program
+ */
 class MainWindow : public QMainWindow
 {
-    /**
-     * @brief Main window of the program
-     */
     Q_OBJECT
 public:
+    /**
+     * @brief MainWindow constructor
+     * @param parent Parent
+     */
     explicit MainWindow(QWidget *parent = 0);
 public slots:
     /**

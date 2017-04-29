@@ -14,13 +14,20 @@
 #include "matrixmodel.h"
 #include "matrixproduct.h"
 
+/**
+ * @brief Window that opens after pressing "Multiply..." button
+ */
 class ResultsWindow : public QWidget
 {
-    /**
-     * @brief Window that opens after pressing "Multiply..." button
-     */
     Q_OBJECT
 public:
+    /**
+     * @brief ResultsWindow constructor
+     * @param model MatrixModel object pointer
+     * @param time Time spent on multiplication
+     * @param mp MatrixProduct object pointer w/ all statistics
+     * @param parent Parent
+     */
     explicit ResultsWindow(MatrixModel *model, const QString &time,
                            MatrixProduct *mp, QWidget *parent = 0);
 private:

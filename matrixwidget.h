@@ -13,13 +13,17 @@
 #include <memory>
 #include "matrixmodel.h"
 
+/**
+ * @brief Widget for matrices w/ QTableView and two buttons
+ */
 class MatrixWidget : public QWidget
 {
-    /**
-     * @brief Widget w/ QTableView and two buttons for matrices
-     */
     Q_OBJECT
 public:
+    /**
+     * @brief MatrixWidget constructor
+     * @param parent Parent
+     */
     explicit MatrixWidget(QWidget *parent = 0);
 
     /**

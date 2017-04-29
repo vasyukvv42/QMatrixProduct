@@ -4,12 +4,15 @@
 #include <chrono>
 #include "matrix.h"
 
+/**
+ * @brief Class for matrix product calculation w/ statistics
+ */
 class MatrixProduct
 {
-    /**
-     * @brief Class for matrix product calculation w/ statistics
-     */
 public:
+    /**
+     * @brief MatrixProduct constructor
+     */
     MatrixProduct();
 
     /**

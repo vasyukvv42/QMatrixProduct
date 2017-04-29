@@ -4,13 +4,22 @@
 #include <vector>
 #include <random>
 
+/**
+ * @brief 2-dimensional square matrix class with double values
+ */
 class Matrix
 {
-    /**
-     * @brief 2-dimensional square matrix class with double values
-     */
 public:
+    /**
+     * @brief Matrix constructor
+     * @param m_size Matrix size
+     */
     explicit Matrix(int m_size = 64);
+
+    /**
+     * @brief Matrix constructor (copies other Matrix data and size)
+     * @param other Other matrix
+     */
     Matrix(const Matrix &other);
 
     /**

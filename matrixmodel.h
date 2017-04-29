@@ -7,15 +7,21 @@
 #include <QTextStream>
 #include "matrix.h"
 
+/**
+ * @brief QAbstractTableModel subclass that encapsulates Matrix class
+ */
 class MatrixModel : public QAbstractTableModel
 {
-    /**
-     * @brief QAbstractTableModel subclass that encapsulates Matrix class
-     */
 public:
+    /**
+     * @brief MatrixModel constructor
+     * @param data Matrix that gets encapsulated
+     * @param readOnly Set the model to read-only
+     * @param parent Parent
+     */
     explicit MatrixModel(const Matrix &data = Matrix(), bool readOnly = false, QObject *parent = 0);
 
-    //These methods need to be implemented to make a editable model
+    //These methods need to be reimplemented to make a editable model
     int rowCount(const QModelIndex &parent = QModelIndex()) const override;
     int columnCount(const QModelIndex &parent = QModelIndex()) const override;
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
