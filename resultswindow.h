@@ -18,15 +18,15 @@ class ResultsWindow : public QWidget
 {
     Q_OBJECT
 public:
-    explicit ResultsWindow(std::shared_ptr<MatrixModel> model, const QString &time,
-                           std::shared_ptr<MatrixProduct> mp, QWidget *parent = 0);
+    explicit ResultsWindow(MatrixModel *model, const QString &time,
+                           MatrixProduct *mp, QWidget *parent = 0);
 private:
     void setupUi();
     QLabel* createLabel(const QString &text);
 
-    std::shared_ptr<MatrixModel> m_matrixModel;
+    std::unique_ptr<MatrixModel> m_matrixModel;
     QString m_time;
-    std::shared_ptr<MatrixProduct> m_matrixProduct;
+    std::unique_ptr<MatrixProduct> m_matrixProduct;
     QTableView *m_tableView;
     QPushButton *m_exportButton;
 };

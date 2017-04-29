@@ -1,7 +1,7 @@
 #include "resultswindow.h"
 
-ResultsWindow::ResultsWindow(std::shared_ptr<MatrixModel> matrixModel, const QString &time,
-                             std::shared_ptr<MatrixProduct> mp, QWidget *parent) :
+ResultsWindow::ResultsWindow(MatrixModel *matrixModel, const QString &time,
+                             MatrixProduct *mp, QWidget *parent) :
     QWidget(parent), m_matrixModel(matrixModel), m_time(time), m_matrixProduct(mp)
 {
     setupUi();

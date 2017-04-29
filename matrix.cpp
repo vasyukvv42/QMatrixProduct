@@ -69,7 +69,7 @@ void Matrix::randomize()
 {
     std::random_device rd;
     std::mt19937 mt(rd());
-    std::uniform_int_distribution<int> dist(-100, 100);
+    std::uniform_int_distribution<int> dist(-10, 10);
     for (int i = 0; i < m_size; i++)
         for (int j = 0; j < m_size; j++)
             m_data[i][j] = dist(mt);

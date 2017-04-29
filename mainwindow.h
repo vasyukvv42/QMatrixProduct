@@ -17,12 +17,16 @@
 #include <memory>
 #include "matrixmodel.h"
 #include "matrixwidget.h"
+#include "matrixproduct.h"
+#include "resultswindow.h"
 
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
 public:
     explicit MainWindow(QWidget *parent = 0);
+public slots:
+    void multiply();
 private:
     void setupUi();
 

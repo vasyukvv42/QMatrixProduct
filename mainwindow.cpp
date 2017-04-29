@@ -5,6 +5,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     setupUi();
     connect(m_sizeBox, SIGNAL(valueChanged(int)), m_matrixAWidget, SLOT(changeSize(int)));
     connect(m_sizeBox, SIGNAL(valueChanged(int)), m_matrixBWidget, SLOT(changeSize(int)));
+    connect(m_multiplyButton, SIGNAL(clicked(bool)), this, SLOT(multiply()));
 }
 
 void MainWindow::setupUi()
@@ -42,9 +43,9 @@ void MainWindow::setupUi()
     optionsLayout->addItem(optionsSpacer);
 
     m_algorithmBox = new QComboBox(m_centralWidget);
-    m_algorithmBox->addItem("Strassen Algorithm", 0);
-    m_algorithmBox->addItem("Winograd-Strassen Algorithm", 1);
-    m_algorithmBox->addItem("Standard Algorithm", 2);
+    m_algorithmBox->addItem("Strassen Algorithm");
+    m_algorithmBox->addItem("Winograd-Strassen Algorithm");
+    m_algorithmBox->addItem("Standard Algorithm");
     optionsLayout->addWidget(m_algorithmBox);
 
     m_multiplyButton = new QPushButton(m_centralWidget);
@@ -54,4 +55,31 @@ void MainWindow::setupUi()
     verticalLayout->addWidget(splitter);
     verticalLayout->addLayout(optionsLayout);
     setCentralWidget(m_centralWidget);
+}
+
+void MainWindow::multiply()
+{
+    MatrixProduct *mp = new MatrixProduct;
+    Matrix &A = m_matrixAModel.get()->matrix();
+    Matrix &B = m_matrixBModel.get()->matrix();
+    MatrixModel *matrixCModel = new MatrixModel();
+    Matrix &C = matrixCModel->matrix();
+    QString time = "1234ms";     //placeholder
+
+    switch (m_algorithmBox->currentIndex()) {
+    case 0:
+        //TODO: Strassen algorithm
+        break;
+    case 1:
+        //TODO: Winograd-Strassen algorithm
+        break;
+    case 2:
+        C = mp->standardMultiply(A, B);
+        break;
+    default:
+        break;
+    }
+
+    ResultsWindow *r = new ResultsWindow(matrixCModel, time, mp);
+    r->show();
 }
