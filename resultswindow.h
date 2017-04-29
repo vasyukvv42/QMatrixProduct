@@ -1,6 +1,7 @@
 #ifndef RESULTSWINDOW_H
 #define RESULTSWINDOW_H
 
+//Qt headers
 #include <QWidget>
 #include <QLabel>
 #include <QTableView>
@@ -9,8 +10,11 @@
 #include <QHeaderView>
 #include <QGroupBox>
 #include <QPushButton>
+
+//STL headers
 #include <memory>
 
+//Custom headers
 #include "matrixmodel.h"
 #include "matrixproduct.h"
 

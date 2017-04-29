@@ -1,6 +1,7 @@
 #ifndef MATRIXWIDGET_H
 #define MATRIXWIDGET_H
 
+//Qt headers
 #include <QWidget>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
@@ -10,7 +11,11 @@
 #include <QHeaderView>
 #include <QFileDialog>
 #include <QDir>
+
+//STL headers
 #include <memory>
+
+//Custom headers
 #include "matrixmodel.h"
 
 /**

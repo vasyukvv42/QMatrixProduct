@@ -1,6 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+//Qt headers
 #include <QMainWindow>
 #include <QTableView>
 #include <QWidget>
@@ -14,7 +15,11 @@
 #include <QHeaderView>
 #include <QSpacerItem>
 #include <QElapsedTimer>
+
+//STL headers
 #include <memory>
+
+//Custom headers
 #include "matrixmodel.h"
 #include "matrixwidget.h"
 #include "matrixproduct.h"

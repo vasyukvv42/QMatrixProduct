@@ -1,10 +1,13 @@
 #ifndef MATRIXMODEL_H
 #define MATRIXMODEL_H
 
+//Qt headers
 #include <QObject>
 #include <QAbstractTableModel>
 #include <QFile>
 #include <QTextStream>
+
+//Custom headers
 #include "matrix.h"
 
 /**
