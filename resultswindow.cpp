@@ -28,7 +28,7 @@ void ResultsWindow::setupUi()
 
     QGroupBox *statisticsBox = new QGroupBox(this);
     QFormLayout *formLayout = new QFormLayout;
-    formLayout->addRow("Time spent:", createLabel(m_time));
+    formLayout->addRow("Time elapsed:", createLabel(m_time));
     formLayout->addRow("Additions: ",
                        createLabel(QString::number(m_matrixProduct->additions())));
     formLayout->addRow("Multiplications: ",

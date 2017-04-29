@@ -64,7 +64,9 @@ void MainWindow::multiply()
     Matrix &B = m_matrixBModel.get()->matrix();
     MatrixModel *matrixCModel = new MatrixModel();
     Matrix &C = matrixCModel->matrix();
-    QString time = "1234ms";     //placeholder
+    QString time;
+    QElapsedTimer timer;
+    timer.start();
 
     switch (m_algorithmBox->currentIndex()) {
     case 0:
@@ -79,6 +81,14 @@ void MainWindow::multiply()
     default:
         break;
     }
+
+    auto msecsElapsed = timer.elapsed();
+    auto nsecsElapsed = timer.nsecsElapsed();
+
+    if (msecsElapsed < 100)
+        time = QString::number(nsecsElapsed) + "ns";
+    else
+        time = QString::number(msecsElapsed) + "ms";
 
     ResultsWindow *r = new ResultsWindow(matrixCModel, time, mp);
     r->show();

@@ -14,6 +14,7 @@
 #include <QHeaderView>
 #include <QSpacerItem>
 #include <QDebug>
+#include <QElapsedTimer>
 #include <memory>
 #include "matrixmodel.h"
 #include "matrixwidget.h"
