@@ -10,6 +10,7 @@
 #include <QHeaderView>
 #include <QFileDialog>
 #include <QDir>
+#include <memory>
 #include "matrixmodel.h"
 
 class MatrixWidget : public QWidget
@@ -17,7 +18,7 @@ class MatrixWidget : public QWidget
     Q_OBJECT
 public:
     explicit MatrixWidget(QWidget *parent = 0);
-    MatrixModel* model();
+    std::shared_ptr<MatrixModel> model();
 public slots:
     void changeSize(int new_size);
     void randomize();
@@ -25,7 +26,7 @@ public slots:
 private:
     void setupUi();
 
-    MatrixModel *m_matrixModel;
+    std::shared_ptr<MatrixModel> m_matrixModel;
     QTableView *m_tableView;
     QPushButton *m_randomizeButton;
     QPushButton *m_importButton;

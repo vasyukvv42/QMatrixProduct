@@ -29,17 +29,17 @@ Matrix MatrixProduct::standardMultiply(const Matrix &A, const Matrix &B)
     return C;
 }
 
-int64_t MatrixProduct::multiplications()
+uint64_t MatrixProduct::multiplications()
 {
     return m_multiplications;
 }
 
-int64_t MatrixProduct::additions()
+uint64_t MatrixProduct::additions()
 {
     return m_additions;
 }
 
-int64_t MatrixProduct::functionCalls()
+uint64_t MatrixProduct::functionCalls()
 {
     return m_functionCalls;
 }

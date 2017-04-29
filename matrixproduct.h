@@ -10,13 +10,13 @@ public:
     MatrixProduct();
     Matrix standardMultiply(const Matrix &A, const Matrix &B);
     //TODO: Strassen and Winograd-Strassen
-    int64_t multiplications();
-    int64_t additions();
-    int64_t functionCalls();
+    uint64_t multiplications();
+    uint64_t additions();
+    uint64_t functionCalls();
 private:
-    int64_t m_multiplications;
-    int64_t m_additions;
-    int64_t m_functionCalls;
+    uint64_t m_multiplications;
+    uint64_t m_additions;
+    uint64_t m_functionCalls;
 };
 
 #endif // MATRIXPRODUCT_H

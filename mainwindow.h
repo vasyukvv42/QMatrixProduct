@@ -13,6 +13,8 @@
 #include <QLabel>
 #include <QHeaderView>
 #include <QSpacerItem>
+#include <QDebug>
+#include <memory>
 #include "matrixmodel.h"
 #include "matrixwidget.h"
 
@@ -27,8 +29,8 @@ private:
     QWidget *m_centralWidget;
     MatrixWidget *m_matrixAWidget;
     MatrixWidget *m_matrixBWidget;
-    MatrixModel *m_matrixAModel;
-    MatrixModel *m_matrixBModel;
+    std::shared_ptr<MatrixModel> m_matrixAModel;
+    std::shared_ptr<MatrixModel> m_matrixBModel;
     QSpinBox *m_sizeBox;
     QComboBox *m_algorithmBox;
     QPushButton *m_multiplyButton;

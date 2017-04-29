@@ -11,10 +11,10 @@ void MatrixWidget::setupUi()
 {
     QVBoxLayout *verticalLayout = new QVBoxLayout(this);
 
-    m_matrixModel = new MatrixModel();
+    m_matrixModel = std::make_shared<MatrixModel>();
 
     m_tableView = new QTableView(this);
-    m_tableView->setModel(m_matrixModel);
+    m_tableView->setModel(m_matrixModel.get());
     m_tableView->verticalHeader()->hide();
     m_tableView->horizontalHeader()->hide();
     m_tableView->verticalHeader()->setDefaultSectionSize(40);
@@ -40,7 +40,7 @@ void MatrixWidget::setupUi()
     verticalLayout->addLayout(buttonsLayout);
 }
 
-MatrixModel* MatrixWidget::model()
+std::shared_ptr<MatrixModel> MatrixWidget::model()
 {
     return m_matrixModel;
 }

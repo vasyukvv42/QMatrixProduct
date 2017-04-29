@@ -1,15 +1,10 @@
 #include "resultswindow.h"
 
-ResultsWindow::ResultsWindow(MatrixModel *matrixModel, const QString &time, MatrixProduct *mp, QWidget *parent) :
+ResultsWindow::ResultsWindow(std::shared_ptr<MatrixModel> matrixModel, const QString &time,
+                             std::shared_ptr<MatrixProduct> mp, QWidget *parent) :
     QWidget(parent), m_matrixModel(matrixModel), m_time(time), m_matrixProduct(mp)
 {
     setupUi();
-}
-
-ResultsWindow::~ResultsWindow()
-{
-    delete m_matrixProduct;
-    delete m_matrixModel;
 }
 
 void ResultsWindow::setupUi()
@@ -20,7 +15,7 @@ void ResultsWindow::setupUi()
     QGridLayout *gridLayout = new QGridLayout(this);
 
     m_tableView = new QTableView(this);
-    m_tableView->setModel(m_matrixModel);
+    m_tableView->setModel(m_matrixModel.get());
     m_tableView->verticalHeader()->hide();
     m_tableView->horizontalHeader()->hide();
     m_tableView->verticalHeader()->setDefaultSectionSize(50);
@@ -33,7 +28,7 @@ void ResultsWindow::setupUi()
 
     QGroupBox *statisticsBox = new QGroupBox(this);
     QFormLayout *formLayout = new QFormLayout;
-    formLayout->addRow("Time:", createLabel(m_time));
+    formLayout->addRow("Time spent:", createLabel(m_time));
     formLayout->addRow("Additions: ",
                        createLabel(QString::number(m_matrixProduct->additions())));
     formLayout->addRow("Multiplications: ",
