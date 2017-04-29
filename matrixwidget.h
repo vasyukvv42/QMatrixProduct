@@ -23,7 +23,7 @@ public:
     explicit MatrixWidget(QWidget *parent = 0);
 
     /**
-     * @brief Return shared pointer to the MatrixModel object
+     * @brief Get shared pointer to the MatrixModel object
      * @return
      */
     std::shared_ptr<MatrixModel> model();

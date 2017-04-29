@@ -15,6 +15,7 @@ class MatrixModel : public QAbstractTableModel
 public:
     explicit MatrixModel(const Matrix &data = Matrix(), bool readOnly = false, QObject *parent = 0);
 
+    //These methods need to be implemented to make a editable model
     int rowCount(const QModelIndex &parent = QModelIndex()) const override;
     int columnCount(const QModelIndex &parent = QModelIndex()) const override;
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
@@ -22,7 +23,7 @@ public:
     Qt::ItemFlags flags(const QModelIndex &index) const;
 
     /**
-     * @brief Return reference to the Matrix object
+     * @brief Get reference to the Matrix object
      * @return reference to the Matrix object
      */
     Matrix &matrix();

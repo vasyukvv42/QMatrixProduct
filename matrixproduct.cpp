@@ -10,7 +10,7 @@ MatrixProduct::MatrixProduct() :
 
 Matrix MatrixProduct::standardMultiply(const Matrix &A, const Matrix &B)
 {
-    m_functionCalls++;
+    m_functionCalls++;      //This function only gets called once though
 
     int size = A.size();
     int sum;
@@ -24,6 +24,7 @@ Matrix MatrixProduct::standardMultiply(const Matrix &A, const Matrix &B)
         }
     }
 
+    //Standard algorithm does n^3 multiplications and n^3 additions
     m_multiplications += size*size*size;
     m_additions += m_multiplications;
     return C;

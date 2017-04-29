@@ -36,6 +36,9 @@ public:
      */
     void randomize();
 private:
+    /**
+     * @brief Internal data stored as vector of vectors
+     */
     std::vector<std::vector<double>> m_data;
     int m_size;
 };

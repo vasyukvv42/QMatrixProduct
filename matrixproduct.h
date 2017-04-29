@@ -23,19 +23,19 @@ public:
     //TODO: Strassen and Winograd-Strassen
 
     /**
-     * @brief Return number of multiplications done since object creation
+     * @brief Get number of multiplications done since object creation
      * @return Number of multiplications
      */
     uint64_t multiplications() const;
 
     /**
-     * @brief Return number of additions done since object creation
+     * @brief Get number of additions done since object creation
      * @return Number of additions
      */
     uint64_t additions() const;
 
     /**
-     * @brief Return number of function calls
+     * @brief Get number of function calls
      * (only the multiplication functions are counted)
      * @return Number of function calls
      */

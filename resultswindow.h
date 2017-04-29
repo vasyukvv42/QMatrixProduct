@@ -25,6 +25,12 @@ public:
                            MatrixProduct *mp, QWidget *parent = 0);
 private:
     void setupUi();
+
+    /**
+     * @brief Create a right-aligned label
+     * @param text Label text
+     * @return Pointer to the created label
+     */
     QLabel* createLabel(const QString &text);
 
     std::unique_ptr<MatrixModel> m_matrixModel;

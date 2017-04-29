@@ -62,6 +62,10 @@ void MatrixModel::randomize()
 
 void MatrixModel::importFromFile(const QString &filename)
 {
+    /* This doesn't resize the matrix, only tries to fit the
+     * data from the file into the matrix starting from top
+     * left corner (i = 0, j = 0)
+     */
     beginResetModel();
     QFile input(filename);
     input.open(QIODevice::ReadOnly | QIODevice::Text);

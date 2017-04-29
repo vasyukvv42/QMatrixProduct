@@ -3,16 +3,21 @@
 MatrixWidget::MatrixWidget(QWidget *parent) : QWidget(parent)
 {
     setupUi();
+
+    //Connect two buttons with their slots
     connect(m_randomizeButton, SIGNAL(clicked(bool)), this, SLOT(randomize()));
     connect(m_importButton, SIGNAL(clicked(bool)), this, SLOT(import()));
 }
 
 void MatrixWidget::setupUi()
 {
+    //Create global vertical layout
     QVBoxLayout *verticalLayout = new QVBoxLayout(this);
 
+    //MatrixModel in this widget is shared with MainWindow
     m_matrixModel = std::make_shared<MatrixModel>();
 
+    //Create table view for the matrix, hide headers and change cell size
     m_tableView = new QTableView(this);
     m_tableView->setModel(m_matrixModel.get());
     m_tableView->verticalHeader()->hide();
@@ -21,19 +26,24 @@ void MatrixWidget::setupUi()
     m_tableView->horizontalHeader()->setDefaultSectionSize(40);
     verticalLayout->addWidget(m_tableView);
 
+    //Create horizontal layout for the buttons
     QHBoxLayout *buttonsLayout = new QHBoxLayout();
 
+    //Create empty space to the left of Randomize button
     QSpacerItem *leftSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding);
     buttonsLayout->addItem(leftSpacer);
 
+    //Create the Randomize button
     m_randomizeButton = new QPushButton(this);
     m_randomizeButton->setText("Randomize");
     buttonsLayout->addWidget(m_randomizeButton);
 
+    //Create the Import button
     m_importButton = new QPushButton(this);
     m_importButton->setText("Import...");
     buttonsLayout->addWidget(m_importButton);
 
+    //Create empty space to the right of Import button
     QSpacerItem *rightSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding);
     buttonsLayout->addItem(rightSpacer);
 
@@ -57,6 +67,7 @@ void MatrixWidget::randomize()
 
 void MatrixWidget::import()
 {
+    //This opens a QFileDialog to choose a text file
     QString filename = QFileDialog::getOpenFileName(this, "Import matrix",
                                                     QDir::homePath(), "Text files (*.txt)");
     m_matrixModel->importFromFile(filename);
