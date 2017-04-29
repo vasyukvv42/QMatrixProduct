@@ -15,13 +15,34 @@
 
 class MatrixWidget : public QWidget
 {
+    /**
+     * @brief Widget w/ QTableView and two buttons for matrices
+     */
     Q_OBJECT
 public:
     explicit MatrixWidget(QWidget *parent = 0);
+
+    /**
+     * @brief Return shared pointer to the MatrixModel object
+     * @return
+     */
     std::shared_ptr<MatrixModel> model();
 public slots:
+    /**
+     * @brief Slot connected with "Size: " QSpinBox in the MainWindow
+     * @param new_size New matrix size
+     */
     void changeSize(int new_size);
+
+    /**
+     * @brief Slot connected with "Randomize" button
+     */
     void randomize();
+
+    /**
+     * @brief Slot connected with "Import..." button.
+     * Opens a QFileDialog
+     */
     void import();
 private:
     void setupUi();

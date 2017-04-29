@@ -23,10 +23,17 @@
 
 class MainWindow : public QMainWindow
 {
+    /**
+     * @brief Main window of the program
+     */
     Q_OBJECT
 public:
     explicit MainWindow(QWidget *parent = 0);
 public slots:
+    /**
+     * @brief Slot connected with "Multiply" button.
+     * Opens a ResultWindow window
+     */
     void multiply();
 private:
     void setupUi();

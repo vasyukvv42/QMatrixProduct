@@ -16,6 +16,9 @@
 
 class ResultsWindow : public QWidget
 {
+    /**
+     * @brief Window that opens after pressing "Multiply..." button
+     */
     Q_OBJECT
 public:
     explicit ResultsWindow(MatrixModel *model, const QString &time,
