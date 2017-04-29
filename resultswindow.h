@@ -10,6 +10,8 @@
 #include <QHeaderView>
 #include <QGroupBox>
 #include <QPushButton>
+#include <QFileDialog>
+#include <QDir>
 
 //STL headers
 #include <memory>
@@ -34,6 +36,11 @@ public:
      */
     explicit ResultsWindow(MatrixModel *model, const QString &time,
                            MatrixProduct *mp, QWidget *parent = 0);
+public slots:
+    /**
+     * @brief Slot connected with "Export..." button
+     */
+    void exportToFile();
 private:
     void setupUi();
 

@@ -52,7 +52,7 @@ public slots:
      * @brief Slot connected with "Import..." button.
      * Opens a QFileDialog
      */
-    void import();
+    void importFromFile();
 private:
     void setupUi();
 

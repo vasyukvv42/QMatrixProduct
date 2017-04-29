@@ -6,7 +6,7 @@ MatrixWidget::MatrixWidget(QWidget *parent) : QWidget(parent)
 
     //Connect two buttons with their slots
     connect(m_randomizeButton, SIGNAL(clicked(bool)), this, SLOT(randomize()));
-    connect(m_importButton, SIGNAL(clicked(bool)), this, SLOT(import()));
+    connect(m_importButton, SIGNAL(clicked(bool)), this, SLOT(importFromFile()));
 }
 
 void MatrixWidget::setupUi()
@@ -65,10 +65,11 @@ void MatrixWidget::randomize()
     m_matrixModel->randomize();
 }
 
-void MatrixWidget::import()
+void MatrixWidget::importFromFile()
 {
-    //This opens a QFileDialog to choose a text file
-    QString filename = QFileDialog::getOpenFileName(this, "Import matrix",
-                                                    QDir::homePath(), "Text files (*.txt)");
+    //Open a QFileDialog to choose a text file
+    QString filename = QFileDialog::getOpenFileName(this, "Import Matrix",
+                                                    QDir::homePath(),
+                                                    "Text files (*.txt)");
     m_matrixModel->importFromFile(filename);
 }

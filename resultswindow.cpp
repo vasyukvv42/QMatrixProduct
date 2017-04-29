@@ -5,6 +5,9 @@ ResultsWindow::ResultsWindow(MatrixModel *matrixModel, const QString &time,
     QWidget(parent), m_matrixModel(matrixModel), m_time(time), m_matrixProduct(mp)
 {
     setupUi();
+
+    //Connect the "Export" button to its slot
+    connect(m_exportButton, SIGNAL(clicked(bool)), this, SLOT(exportToFile()));
 }
 
 void ResultsWindow::setupUi()
@@ -57,4 +60,30 @@ QLabel *ResultsWindow::createLabel(const QString &text)
     QLabel *label = new QLabel(text, this);
     label->setAlignment(Qt::AlignRight);
     return label;
+}
+
+void ResultsWindow::exportToFile()
+{
+    /* This saves resulting matrix as a text file
+     * Each value is separated with spaces
+     * Each row is separated with newlines
+     */
+
+    //Open QFileDialog to get filename from user
+    QString filename = QFileDialog::getSaveFileName(this, "Export Matrix",
+                                                    QDir::homePath(),
+                                                    "Text files (*.txt)");
+
+    QFile output(filename);
+    output.open(QIODevice::WriteOnly | QIODevice::Text);
+    QTextStream stream(&output);
+
+    Matrix &C = m_matrixModel->matrix();
+    int size = C.size();
+
+    for (int i = 0; i < size; i++) {
+        for (int j = 0; j < size; j++)
+            stream << C[i][j] << " ";
+        stream << endl;
+    }
 }
