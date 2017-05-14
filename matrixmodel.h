@@ -22,7 +22,7 @@ public:
      * @param readOnly Set the model to read-only
      * @param parent Parent
      */
-    explicit MatrixModel(const Matrix &data = Matrix(), bool readOnly = false, QObject *parent = 0);
+    explicit MatrixModel(const Matrix &data = Matrix(), QObject *parent = 0);
 
     //These methods need to be reimplemented to make a editable model
     int rowCount(const QModelIndex &parent = QModelIndex()) const override;
@@ -55,6 +55,8 @@ public:
      * Rows must be separated with newlines
      */
     void importFromFile(const QString &filename);
+
+    void setReadOnly(bool readOnly);
 private:
     Matrix m_data;
     bool m_readOnly;

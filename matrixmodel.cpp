@@ -1,7 +1,7 @@
 #include "matrixmodel.h"
 
-MatrixModel::MatrixModel(const Matrix &data, bool readOnly, QObject *parent)
-    : QAbstractTableModel(parent), m_data(data), m_readOnly(readOnly)
+MatrixModel::MatrixModel(const Matrix &data, QObject *parent)
+    : QAbstractTableModel(parent), m_data(data)
 {
 
 }
@@ -76,4 +76,9 @@ void MatrixModel::importFromFile(const QString &filename)
             ls >> m_data[i][j];
     }
     endResetModel();
+}
+
+void MatrixModel::setReadOnly(bool readOnly)
+{
+    m_readOnly = readOnly;
 }

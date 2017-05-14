@@ -74,10 +74,13 @@ void MainWindow::multiply()
 {
     MatrixProduct *mp = new MatrixProduct;
     MatrixModel *matrixCModel = new MatrixModel();
+    matrixCModel->setReadOnly(true);
 
     Matrix &A = m_matrixAModel.get()->matrix();
     Matrix &B = m_matrixBModel.get()->matrix();
     Matrix &C = matrixCModel->matrix();
+
+    setCursor(Qt::WaitCursor);
 
     //Start timer
     QString time;
@@ -102,11 +105,12 @@ void MainWindow::multiply()
     auto msecsElapsed = timer.elapsed();
     auto nsecsElapsed = timer.nsecsElapsed();
 
-    if (msecsElapsed < 100)     //Time is displayed in nanoseconds
+    if (msecsElapsed < 10)     //Time is displayed in nanoseconds
         time = QString::number(nsecsElapsed) + "ns";
-    else                        //Or in miliseconds if elapsed time >= 100ms
+    else                        //Or in miliseconds if elapsed time >= 10ms
         time = QString::number(msecsElapsed) + "ms";
 
+    setCursor(Qt::ArrowCursor);
     ResultsWindow *r = new ResultsWindow(matrixCModel, time, mp);
     r->show();
 }
