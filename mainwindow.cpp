@@ -80,6 +80,8 @@ void MainWindow::multiply()
     Matrix &B = m_matrixBModel.get()->matrix();
     Matrix &C = matrixCModel->matrix();
 
+    int size = A.size();
+
     setCursor(Qt::WaitCursor);
 
     //Start timer
@@ -88,15 +90,20 @@ void MainWindow::multiply()
     timer.start();
 
     switch (m_algorithmBox->currentIndex()) {
-    case 0:     //Strassen algorithm
+    case 0: {   //Strassen algorithm
+        int newSize = MatrixProduct::closestPowerOf2(size);
+        A.changeSize(newSize);
+        B.changeSize(newSize);
         C = mp->strassenMultiply(A, B);
         break;
-    case 1:     //Winograd-Strassen algorithm
-        //TODO: Winograd-Strassen algorithm
+    }
+    case 1: {   //Winograd-Strassen algorithm
         break;
-    case 2:     //Standard algorithm
+    }
+    case 2: {   //Standard algorithm
         C = mp->standardMultiply(A, B);
         break;
+    }
     default:
         break;
     }
@@ -107,10 +114,15 @@ void MainWindow::multiply()
 
     if (msecsElapsed < 10)     //Time is displayed in nanoseconds
         time = QString::number(nsecsElapsed) + "ns";
-    else                        //Or in miliseconds if elapsed time >= 10ms
+    else                       //Or in miliseconds if elapsed time >= 10ms
         time = QString::number(msecsElapsed) + "ms";
 
+    A.changeSize(size);
+    B.changeSize(size);
+    matrixCModel->changeSize(size);
+
     setCursor(Qt::ArrowCursor);
+
     ResultsWindow *r = new ResultsWindow(matrixCModel, time, mp);
     r->show();
 }

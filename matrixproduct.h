@@ -23,9 +23,22 @@ public:
      */
     Matrix standardMultiply(const Matrix &A, const Matrix &B);
 
+    /**
+     * @brief Strassen O(n^log7) matrix multiplication algorithm
+     * @param A Left-hand side matrix
+     * @param B Right-hand side matrix
+     * @return Matrix C = AB
+     */
     Matrix strassenMultiply(const Matrix &A, const Matrix &B);
 
     //TODO: Strassen and Winograd-Strassen
+
+    /**
+     * @brief Get closest power of 2 greater than n (i.e. 64 for n=63)
+     * @param n Positive number
+     * @return Closest power of 2
+     */
+    static int closestPowerOf2(int n);
 
     /**
      * @brief Get number of multiplications done since object creation

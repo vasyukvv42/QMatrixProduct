@@ -1,4 +1,5 @@
 #include "matrixproduct.h"
+#include <QDebug>
 
 MatrixProduct::MatrixProduct() :
     m_multiplications(0),
@@ -89,6 +90,16 @@ Matrix MatrixProduct::strassenMultiply(const Matrix &A, const Matrix &B)
         m_additions += 18*newSize*newSize;
         return C;
     }
+}
+
+int MatrixProduct::closestPowerOf2(int n)
+{
+    int p;
+    for (p = 1; p <= n; p <<= 1) {
+        if (p == n)
+            return n;
+    }
+    return p;
 }
 
 uint64_t MatrixProduct::multiplications() const
