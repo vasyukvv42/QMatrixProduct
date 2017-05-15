@@ -23,6 +23,8 @@ public:
      */
     Matrix standardMultiply(const Matrix &A, const Matrix &B);
 
+    Matrix strassenMultiply(const Matrix &A, const Matrix &B);
+
     //TODO: Strassen and Winograd-Strassen
 
     /**

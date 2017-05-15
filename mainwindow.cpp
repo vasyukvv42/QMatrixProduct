@@ -89,7 +89,7 @@ void MainWindow::multiply()
 
     switch (m_algorithmBox->currentIndex()) {
     case 0:     //Strassen algorithm
-        //TODO: Strassen algorithm
+        C = mp->strassenMultiply(A, B);
         break;
     case 1:     //Winograd-Strassen algorithm
         //TODO: Winograd-Strassen algorithm

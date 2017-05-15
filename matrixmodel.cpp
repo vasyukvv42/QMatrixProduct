@@ -1,7 +1,7 @@
 #include "matrixmodel.h"
 
 MatrixModel::MatrixModel(const Matrix &data, QObject *parent)
-    : QAbstractTableModel(parent), m_data(data)
+    : QAbstractTableModel(parent), m_data(data), m_readOnly(false)
 {
 
 }
