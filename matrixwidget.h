@@ -18,6 +18,8 @@
 //Custom headers
 #include "matrixmodel.h"
 
+namespace qmatrixproduct {
+
 /**
  * @brief Widget for matrices w/ QTableView and two buttons
  */
@@ -41,18 +43,18 @@ public slots:
      * @brief Slot connected with "Size: " QSpinBox in the MainWindow
      * @param new_size New matrix size
      */
-    void changeSize(int new_size);
+    void onSizeBoxChanged(int new_size);
 
     /**
      * @brief Slot connected with "Randomize" button
      */
-    void randomize();
+    void onRandomizeButtonClicked();
 
     /**
      * @brief Slot connected with "Import..." button.
      * Opens a QFileDialog
      */
-    void importFromFile();
+    void onImportButtonClicked();
 private:
     void setupUi();
 
@@ -61,5 +63,7 @@ private:
     QPushButton *m_randomizeButton;
     QPushButton *m_importButton;
 };
+
+} // namespace qmatrixproduct
 
 #endif // MATRIXWIDGET_H

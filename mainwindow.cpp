@@ -1,13 +1,15 @@
 #include "mainwindow.h"
 
+namespace qmatrixproduct {
+
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 {
     setupUi();
 
     //Connect the buttons and size spin box with their slots
-    connect(m_sizeBox, SIGNAL(valueChanged(int)), m_matrixAWidget, SLOT(changeSize(int)));
-    connect(m_sizeBox, SIGNAL(valueChanged(int)), m_matrixBWidget, SLOT(changeSize(int)));
-    connect(m_multiplyButton, SIGNAL(clicked(bool)), this, SLOT(multiply()));
+    connect(m_sizeBox, SIGNAL(valueChanged(int)), m_matrixAWidget, SLOT(onSizeBoxChanged(int)));
+    connect(m_sizeBox, SIGNAL(valueChanged(int)), m_matrixBWidget, SLOT(onSizeBoxChanged(int)));
+    connect(m_multiplyButton, SIGNAL(clicked(bool)), this, SLOT(onMultiplyButtonClicked()));
 }
 
 void MainWindow::setupUi()
@@ -70,17 +72,15 @@ void MainWindow::setupUi()
     setCentralWidget(m_centralWidget);
 }
 
-void MainWindow::multiply()
+void MainWindow::onMultiplyButtonClicked()
 {
     MatrixProduct *mp = new MatrixProduct;
     MatrixModel *matrixCModel = new MatrixModel();
     matrixCModel->setReadOnly(true);
 
-    Matrix &A = m_matrixAModel.get()->matrix();
-    Matrix &B = m_matrixBModel.get()->matrix();
-    Matrix &C = matrixCModel->matrix();
-
-    int size = A.size();
+    SquareMatrix &A = m_matrixAModel.get()->matrix();
+    SquareMatrix &B = m_matrixBModel.get()->matrix();
+    SquareMatrix &C = matrixCModel->matrix();
 
     setCursor(Qt::WaitCursor);
 
@@ -89,40 +89,30 @@ void MainWindow::multiply()
     QElapsedTimer timer;
     timer.start();
 
-    switch (m_algorithmBox->currentIndex()) {
-    case 0: {   //Strassen algorithm
-        int newSize = MatrixProduct::closestPowerOf2(size);
-        A.changeSize(newSize);
-        B.changeSize(newSize);
+    int algorithmIndex = m_algorithmBox->currentIndex();
+
+    switch (algorithmIndex) {
+    case 0:   //Strassen algorithm
         C = mp->strassenMultiply(A, B);
         break;
-    }
-    case 1: {   //Winograd-Strassen algorithm
+    case 1:   //Winograd-Strassen algorithm
+        C = mp->winogradMultiply(A, B);
         break;
-    }
-    case 2: {   //Standard algorithm
+    case 2:   //Standard algorithm
         C = mp->standardMultiply(A, B);
         break;
-    }
     default:
         break;
     }
 
     //Stop timer
     auto msecsElapsed = timer.elapsed();
-    auto nsecsElapsed = timer.nsecsElapsed();
-
-    if (msecsElapsed < 10)     //Time is displayed in nanoseconds
-        time = QString::number(nsecsElapsed) + "ns";
-    else                       //Or in miliseconds if elapsed time >= 10ms
-        time = QString::number(msecsElapsed) + "ms";
-
-    A.changeSize(size);
-    B.changeSize(size);
-    matrixCModel->changeSize(size);
+    time = QString::number(msecsElapsed) + "ms";
 
     setCursor(Qt::ArrowCursor);
 
-    ResultsWindow *r = new ResultsWindow(matrixCModel, time, mp);
+    ResultsWindow *r = new ResultsWindow(matrixCModel, time, mp, algorithmIndex);
     r->show();
 }
+
+} // namespace qmatrixproduct

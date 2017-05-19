@@ -1,13 +1,19 @@
 #include "resultswindow.h"
 
+namespace qmatrixproduct {
+
 ResultsWindow::ResultsWindow(MatrixModel *matrixModel, const QString &time,
-                             MatrixProduct *mp, QWidget *parent) :
-    QWidget(parent), m_matrixModel(matrixModel), m_time(time), m_matrixProduct(mp)
+                             MatrixProduct *mp, int algorithmIndex, QWidget *parent) :
+    QWidget(parent),
+    m_matrixModel(matrixModel),
+    m_time(time),
+    m_matrixProduct(mp),
+    m_algorithmIndex(algorithmIndex)
 {
     setupUi();
 
     //Connect the "Export" button to its slot
-    connect(m_exportButton, SIGNAL(clicked(bool)), this, SLOT(exportToFile()));
+    connect(m_exportButton, SIGNAL(clicked(bool)), this, SLOT(onExportButtonClicked()));
 }
 
 void ResultsWindow::setupUi()
@@ -15,7 +21,7 @@ void ResultsWindow::setupUi()
     //Set window title and size
     //TODO: check how this window looks on Windows, it might have no title bar lol
     setWindowTitle("Results");
-    resize(1280, 720);
+    resize(800, 600);
     setWindowFlags(Qt::Window);
 
     //Create global grid layout
@@ -48,10 +54,13 @@ void ResultsWindow::setupUi()
                        createLabel(QString::number(m_matrixProduct->additions())));
     formLayout->addRow("Multiplications: ",
                        createLabel(QString::number(m_matrixProduct->multiplications())));
-    formLayout->addRow("Function calls: ",
-                       createLabel(QString::number(m_matrixProduct->functionCalls())));
+    formLayout->addRow("Recursive calls: ",
+                       createLabel(QString::number(m_matrixProduct->recursiveCalls())));
     statisticsBox->setLayout(formLayout);
-    statisticsBox->setTitle("Statistics");
+
+    QStringList algorithms = {"(Strassen)", "(Winograd-Strassen)", "(Standard)"};
+    statisticsBox->setTitle("Statistics " + algorithms[m_algorithmIndex]);
+
     gridLayout->addWidget(statisticsBox, 4, 5, 1, 1);
 }
 
@@ -62,7 +71,7 @@ QLabel *ResultsWindow::createLabel(const QString &text)
     return label;
 }
 
-void ResultsWindow::exportToFile()
+void ResultsWindow::onExportButtonClicked()
 {
     /* This saves resulting matrix as a text file
      * Each value is separated with spaces
@@ -78,12 +87,15 @@ void ResultsWindow::exportToFile()
     output.open(QIODevice::WriteOnly | QIODevice::Text);
     QTextStream stream(&output);
 
-    Matrix &C = m_matrixModel->matrix();
+    SquareMatrix &C = m_matrixModel->matrix();
     int size = C.size();
 
     for (int i = 0; i < size; i++) {
-        for (int j = 0; j < size; j++)
+        for (int j = 0; j < size; j++) {
             stream << C[i][j] << " ";
+        }
         stream << endl;
     }
 }
+
+} // namespace qmatrixproduct

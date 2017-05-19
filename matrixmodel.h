@@ -8,7 +8,9 @@
 #include <QTextStream>
 
 //Custom headers
-#include "matrix.h"
+#include "squarematrix.h"
+
+namespace qmatrixproduct {
 
 /**
  * @brief QAbstractTableModel subclass that encapsulates Matrix class
@@ -22,7 +24,8 @@ public:
      * @param readOnly Set the model to read-only
      * @param parent Parent
      */
-    explicit MatrixModel(const Matrix &data = Matrix(), QObject *parent = 0);
+    explicit MatrixModel(const qmatrixproduct::SquareMatrix &data = SquareMatrix(),
+                         QObject *parent = 0);
 
     //These methods need to be reimplemented to make a editable model
     int rowCount(const QModelIndex &parent = QModelIndex()) const override;
@@ -35,7 +38,7 @@ public:
      * @brief Get reference to the Matrix object
      * @return reference to the Matrix object
      */
-    Matrix &matrix();
+    qmatrixproduct::SquareMatrix &matrix();
 
     /**
      * @brief Call Matrix.changeSize
@@ -58,8 +61,10 @@ public:
 
     void setReadOnly(bool readOnly);
 private:
-    Matrix m_data;
+    qmatrixproduct::SquareMatrix m_data;
     bool m_readOnly;
 };
+
+} // namespace qmatrixproduct
 
 #endif // MATRIXMODEL_H

@@ -5,23 +5,19 @@
 #include <vector>
 #include <random>
 
+namespace qmatrixproduct {
+
 /**
  * @brief 2-dimensional square matrix class with double values
  */
-class Matrix
+class SquareMatrix
 {
 public:
     /**
      * @brief Matrix constructor
      * @param m_size Matrix size
      */
-    explicit Matrix(int m_size = 64);
-
-    /**
-     * @brief Matrix constructor (copies other Matrix data and size)
-     * @param other Other matrix
-     */
-    Matrix(const Matrix &other);
+    explicit SquareMatrix(int m_size = 64);
 
     /**
      * @brief Change the size of matrix
@@ -31,9 +27,9 @@ public:
 
     std::vector<double>& operator [](int row);
     const std::vector<double>& operator [](int row) const;
-    Matrix operator +(const Matrix& other) const;
-    Matrix operator -(const Matrix& other) const;
-    Matrix& operator =(const Matrix& other);
+    SquareMatrix operator +(const SquareMatrix& other) const;
+    SquareMatrix operator -(const SquareMatrix& other) const;
+    SquareMatrix& operator =(const SquareMatrix& other);
 
     /**
      * @brief Get matrix size
@@ -52,5 +48,7 @@ private:
     std::vector<std::vector<double>> m_data;
     int m_size;
 };
+
+} // namespace qmatrixproduct
 
 #endif // MATRIX_H

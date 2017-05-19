@@ -20,6 +20,8 @@
 #include "matrixmodel.h"
 #include "matrixproduct.h"
 
+namespace qmatrixproduct {
+
 /**
  * @brief Window that opens after pressing "Multiply..." button
  */
@@ -34,13 +36,16 @@ public:
      * @param mp MatrixProduct object pointer w/ all statistics
      * @param parent Parent
      */
-    explicit ResultsWindow(MatrixModel *model, const QString &time,
-                           MatrixProduct *mp, QWidget *parent = 0);
+    explicit ResultsWindow(MatrixModel *model,
+                           const QString &time,
+                           qmatrixproduct::MatrixProduct *mp,
+                           int algorithmIndex,
+                           QWidget *parent = 0);
 public slots:
     /**
      * @brief Slot connected with "Export..." button
      */
-    void exportToFile();
+    void onExportButtonClicked();
 private:
     void setupUi();
 
@@ -53,9 +58,12 @@ private:
 
     std::unique_ptr<MatrixModel> m_matrixModel;
     QString m_time;
-    std::unique_ptr<MatrixProduct> m_matrixProduct;
+    std::unique_ptr<qmatrixproduct::MatrixProduct> m_matrixProduct;
+    int m_algorithmIndex;
     QTableView *m_tableView;
     QPushButton *m_exportButton;
 };
+
+} // namespace qmatrixproduct
 
 #endif // RESULTSWINDOW_H

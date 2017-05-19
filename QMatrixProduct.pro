@@ -25,15 +25,15 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    matrix.cpp \
     matrixmodel.cpp \
     matrixwidget.cpp \
     matrixproduct.cpp \
-    resultswindow.cpp
+    resultswindow.cpp \
+    squarematrix.cpp
 
 HEADERS  += mainwindow.h \
-    matrix.h \
     matrixmodel.h \
     matrixwidget.h \
     matrixproduct.h \
-    resultswindow.h
+    resultswindow.h \
+    squarematrix.h

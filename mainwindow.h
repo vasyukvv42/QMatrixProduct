@@ -25,6 +25,8 @@
 #include "matrixproduct.h"
 #include "resultswindow.h"
 
+namespace qmatrixproduct {
+
 /**
  * @brief Main window of the program
  */
@@ -42,7 +44,7 @@ public slots:
      * @brief Slot connected with "Multiply" button.
      * Opens a ResultsWindow window
      */
-    void multiply();
+    void onMultiplyButtonClicked();
 private:
     void setupUi();
 
@@ -55,5 +57,7 @@ private:
     QComboBox *m_algorithmBox;
     QPushButton *m_multiplyButton;
 };
+
+} // namespace qmatrixproduct
 
 #endif // MAINWINDOW_H

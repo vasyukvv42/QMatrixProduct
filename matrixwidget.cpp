@@ -1,12 +1,14 @@
 #include "matrixwidget.h"
 
+namespace qmatrixproduct {
+
 MatrixWidget::MatrixWidget(QWidget *parent) : QWidget(parent)
 {
     setupUi();
 
     //Connect two buttons with their slots
-    connect(m_randomizeButton, SIGNAL(clicked(bool)), this, SLOT(randomize()));
-    connect(m_importButton, SIGNAL(clicked(bool)), this, SLOT(importFromFile()));
+    connect(m_randomizeButton, SIGNAL(clicked(bool)), this, SLOT(onRandomizeButtonClicked()));
+    connect(m_importButton, SIGNAL(clicked(bool)), this, SLOT(onImportButtonClicked()));
 }
 
 void MatrixWidget::setupUi()
@@ -55,17 +57,17 @@ std::shared_ptr<MatrixModel> MatrixWidget::model()
     return m_matrixModel;
 }
 
-void MatrixWidget::changeSize(int new_size)
+void MatrixWidget::onSizeBoxChanged(int new_size)
 {
     m_matrixModel->changeSize(new_size);
 }
 
-void MatrixWidget::randomize()
+void MatrixWidget::onRandomizeButtonClicked()
 {
     m_matrixModel->randomize();
 }
 
-void MatrixWidget::importFromFile()
+void MatrixWidget::onImportButtonClicked()
 {
     //Open a QFileDialog to choose a text file
     QString filename = QFileDialog::getOpenFileName(this, "Import Matrix",
@@ -73,3 +75,5 @@ void MatrixWidget::importFromFile()
                                                     "Text files (*.txt)");
     m_matrixModel->importFromFile(filename);
 }
+
+} // namespace qmatrixproduct

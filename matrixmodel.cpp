@@ -1,7 +1,11 @@
 #include "matrixmodel.h"
 
-MatrixModel::MatrixModel(const Matrix &data, QObject *parent)
-    : QAbstractTableModel(parent), m_data(data), m_readOnly(false)
+namespace qmatrixproduct {
+
+MatrixModel::MatrixModel(const SquareMatrix &data, QObject *parent)
+    : QAbstractTableModel(parent),
+      m_data(data),
+      m_readOnly(false)
 {
 
 }
@@ -41,7 +45,7 @@ Qt::ItemFlags MatrixModel::flags(const QModelIndex &index) const
     return QAbstractItemModel::flags(index) | Qt::ItemIsEditable;
 }
 
-Matrix& MatrixModel::matrix()
+SquareMatrix& MatrixModel::matrix()
 {
     return m_data;
 }
@@ -82,3 +86,5 @@ void MatrixModel::setReadOnly(bool readOnly)
 {
     m_readOnly = readOnly;
 }
+
+} // namespace qmatrixproduct
