@@ -15,7 +15,7 @@ SquareMatrix MatrixProduct::standardMultiply(const SquareMatrix &A, const Square
     m_recursiveCalls++;
 
     int size = A.size();
-    int sum;
+    double sum;
     SquareMatrix C(size);
     for (int i = 0; i < size; i++) {
         for (int j = 0; j < size; j++) {
