@@ -18,12 +18,12 @@ const std::vector<double>& SquareMatrix::operator [](int row) const
     return m_data[row];
 }
 
-void SquareMatrix::changeSize(int new_size)
+void SquareMatrix::changeSize(int newSize)
 {
     for (int i = 0; i < m_size; i++)
-        m_data[i].resize(new_size, 0);
-    m_data.resize(new_size, std::vector<double>(new_size, 0));
-    m_size = new_size;
+        m_data[i].resize(newSize, 0);
+    m_data.resize(newSize, std::vector<double>(newSize, 0));
+    m_size = newSize;
 }
 
 SquareMatrix SquareMatrix::operator +(const SquareMatrix &other) const
@@ -47,7 +47,6 @@ SquareMatrix SquareMatrix::operator -(const SquareMatrix &other) const
 SquareMatrix &SquareMatrix::operator =(const SquareMatrix &other)
 {
     m_size = other.m_size;
-    m_data.clear();
     m_data = other.m_data;
     return *this;
 }

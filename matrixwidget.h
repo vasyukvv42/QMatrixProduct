@@ -41,9 +41,9 @@ public:
 public slots:
     /**
      * @brief Slot connected with "Size: " QSpinBox in the MainWindow
-     * @param new_size New matrix size
+     * @param newSize New matrix size
      */
-    void onSizeBoxChanged(int new_size);
+    void onSizeBoxChanged(int newSize);
 
     /**
      * @brief Slot connected with "Randomize" button

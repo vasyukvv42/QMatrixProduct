@@ -57,9 +57,9 @@ std::shared_ptr<MatrixModel> MatrixWidget::model()
     return m_matrixModel;
 }
 
-void MatrixWidget::onSizeBoxChanged(int new_size)
+void MatrixWidget::onSizeBoxChanged(int newSize)
 {
-    m_matrixModel->changeSize(new_size);
+    m_matrixModel->changeSize(newSize);
 }
 
 void MatrixWidget::onRandomizeButtonClicked()

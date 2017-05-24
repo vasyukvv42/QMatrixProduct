@@ -13,7 +13,7 @@
 namespace qmatrixproduct {
 
 /**
- * @brief QAbstractTableModel subclass that encapsulates Matrix class
+ * @brief QAbstractTableModel subclass that encapsulates SquareMatrix class
  */
 class MatrixModel : public QAbstractTableModel
 {
@@ -21,7 +21,6 @@ public:
     /**
      * @brief MatrixModel constructor
      * @param data Matrix that gets encapsulated
-     * @param readOnly Set the model to read-only
      * @param parent Parent
      */
     explicit MatrixModel(const qmatrixproduct::SquareMatrix &data = SquareMatrix(),
@@ -42,9 +41,9 @@ public:
 
     /**
      * @brief Call Matrix.changeSize
-     * @param new_size New matrix size
+     * @param newSize New matrix size
      */
-    void changeSize(int new_size);
+    void changeSize(int newSize);
 
     /**
      * @brief Call Matrix.randomize

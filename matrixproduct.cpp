@@ -27,8 +27,9 @@ SquareMatrix MatrixProduct::standardMultiply(const SquareMatrix &A, const Square
     }
 
     //Standard algorithm does n^3 multiplications and n^3 additions
-    m_multiplications += size*size*size;
-    m_additions += size*size*size;
+    m_multiplications += (uint64_t) size*size*size;
+    m_additions += (uint64_t) size*size*size;
+
     return C;
 }
 
@@ -48,7 +49,7 @@ SquareMatrix MatrixProduct::strassenMultiply(const SquareMatrix &A, const Square
         C.changeSize(size);
         return C;
     }
-    else if (size <= 64)
+    else if (size <= 32)
         return standardMultiply(A, B);
     else {
         int newSize = size/2;
@@ -80,7 +81,7 @@ SquareMatrix MatrixProduct::strassenMultiply(const SquareMatrix &A, const Square
 
         strassenCompose(C, C11, C12, C21, C22);
 
-        m_additions += 18*newSize*newSize;
+        m_additions += (uint64_t) 18*newSize*newSize;
         return C;
     }
 }
@@ -101,7 +102,7 @@ SquareMatrix MatrixProduct::winogradMultiply(const SquareMatrix &A, const Square
         C.changeSize(size);
         return C;
     }
-    else if (size <= 64)
+    else if (size <= 32)
         return standardMultiply(A, B);
     else {
         int newSize = size/2;
@@ -150,7 +151,7 @@ SquareMatrix MatrixProduct::winogradMultiply(const SquareMatrix &A, const Square
 
         strassenCompose(C, C11, C12, C21, C22);
 
-        m_additions += 15*newSize*newSize;
+        m_additions += (uint64_t) 15*newSize*newSize;
         return C;
     }
 }

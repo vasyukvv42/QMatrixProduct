@@ -16,7 +16,7 @@ void MainWindow::setupUi()
 {
     //Set window title and size
     setWindowTitle("QMatrixProduct");
-    resize(1280, 720);
+    resize(960, 540);
     m_centralWidget = new QWidget(this);
 
     //Create global vertical layout
@@ -48,7 +48,7 @@ void MainWindow::setupUi()
     m_sizeBox->setValue(64);
     m_sizeBox->setSingleStep(1);
     m_sizeBox->setMinimum(0);
-    m_sizeBox->setMaximum(8192);
+    m_sizeBox->setMaximum(4096);
     optionsLayout->addWidget(m_sizeBox);
 
     //Create empty space between spin box and combo box
@@ -106,8 +106,10 @@ void MainWindow::onMultiplyButtonClicked()
     }
 
     //Stop timer
+    auto nsecsElapsed = timer.nsecsElapsed();
     auto msecsElapsed = timer.elapsed();
-    time = QString::number(msecsElapsed) + "ms";
+    time = (msecsElapsed <= 1) ? QString::number(nsecsElapsed) + "ns"
+                               : QString::number(msecsElapsed) + "ms";
 
     setCursor(Qt::ArrowCursor);
 

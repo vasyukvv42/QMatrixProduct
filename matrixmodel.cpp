@@ -33,8 +33,14 @@ bool MatrixModel::setData(const QModelIndex &index, const QVariant &value, int r
 {
     int row = index.row();
     int col = index.column();
-    if (role == Qt::EditRole)
-        m_data[row][col] = value.toDouble();
+    if (role == Qt::EditRole) {
+        bool ok = true;
+        double newValue = value.toDouble(&ok);
+        if (ok)
+            m_data[row][col] = newValue;
+        else
+            return false;
+    }
     return true;
 }
 
@@ -50,10 +56,10 @@ SquareMatrix& MatrixModel::matrix()
     return m_data;
 }
 
-void MatrixModel::changeSize(int new_size)
+void MatrixModel::changeSize(int newSize)
 {
     beginResetModel();
-    m_data.changeSize(new_size);
+    m_data.changeSize(newSize);
     endResetModel();
 }
 

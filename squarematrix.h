@@ -21,9 +21,9 @@ public:
 
     /**
      * @brief Change the size of matrix
-     * @param new_size new matrix size
+     * @param newSize new matrix size
      */
-    void changeSize(int new_size);
+    void changeSize(int newSize);
 
     std::vector<double>& operator [](int row);
     const std::vector<double>& operator [](int row) const;
